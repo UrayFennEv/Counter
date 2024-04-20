@@ -35,11 +35,9 @@ public class Counter : MonoBehaviour
 
     private void Stop()
     {
-
         StopCoroutine(_coroutine);
         _coroutine = null;
         _isWork = false;
-
     }
 
     private IEnumerator Count(float delay)
