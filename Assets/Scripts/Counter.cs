@@ -14,20 +14,23 @@ public class Counter : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && _coroutine == null)
+        if (Input.GetMouseButtonDown(0))
         {
-            _isWork = true;
-            Start();
-        }
-        else if (Input.GetKeyDown(KeyCode.Mouse0) && _coroutine != null)
-        {
-            Stop();
+            if (_coroutine == null)
+            {
+                _isWork = true;
+                Start();
+            }
+            else if (_coroutine != null)
+            {
+                Stop();
+            }
         }
     }
 
     private void Start()
     {
-        _coroutine = StartCoroutine(NumberCount(_delay));
+        _coroutine = StartCoroutine(Count(_delay));
     }
 
     private void Stop()
@@ -39,19 +42,19 @@ public class Counter : MonoBehaviour
 
     }
 
-    private IEnumerator NumberCount(float delay)
+    private IEnumerator Count(float delay)
     {
         var wait = new WaitForSeconds(delay);
 
         while (_isWork)
         {
             _count++;
-            DisplayCount(_count);
+            DisplayCounter(_count);
             yield return wait;
         }
     }
 
-    private void DisplayCount(float number)
+    private void DisplayCounter(float number)
     {
         _text.text = number.ToString();
     }
